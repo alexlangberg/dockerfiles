@@ -1,0 +1,12 @@
+vault:
+  build: ../vault
+storage:
+  build: ../storage
+mediasampler:
+  build: .
+  links:
+   - vault
+   - storage
+  volumes_from:
+   - vault
+   - storage
