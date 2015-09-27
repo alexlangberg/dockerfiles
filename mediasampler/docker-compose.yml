@@ -1,3 +1,7 @@
+base:
+  build: ../base-debian
+node:
+  build: ../node
 vault:
   build: ../vault
 storage:
@@ -5,8 +9,22 @@ storage:
 mediasampler:
   build: .
   links:
-   - vault
-   - storage
+    - vault
+    - storage
   volumes_from:
-   - vault
-   - storage
+    - vault
+    - storage
+nginx:
+  build: ../mediasampler-nginx
+  links:
+    - storage
+    - loggly
+  volumes_from:
+    - storage
+  ports:
+    - "8080:80"
+loggly:
+  image: sendgridlabs/loggly-docker
+  env_file: ../loggly/.env
+  expose:
+    - "514/udp"
