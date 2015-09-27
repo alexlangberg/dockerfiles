@@ -25,6 +25,6 @@ nginx:
     - "8080:80"
 loggly:
   image: sendgridlabs/loggly-docker
-  env_file: ../loggly/.env
+  env_file: ../loggly/env
   expose:
     - "514/udp"
