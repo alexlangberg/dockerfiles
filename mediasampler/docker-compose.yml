@@ -22,7 +22,7 @@ nginx:
   volumes_from:
     - storage
   ports:
-    - "8080:80"
+    - "7979:80"
 loggly:
   image: sendgridlabs/loggly-docker
   env_file: ../loggly/env
