@@ -1,6 +1,6 @@
 ########## node ##########
 
-FROM alexlangberg/base-debian:v1
+FROM alexlangberg/debian:jessie
 
 ENV USER node
 ENV NODE_VERSION v4.1.1

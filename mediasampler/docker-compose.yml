@@ -1,5 +1,5 @@
 base:
-  build: ../base-debian
+  build: ../debian-jessie
 node:
   build: ../node
 vault:

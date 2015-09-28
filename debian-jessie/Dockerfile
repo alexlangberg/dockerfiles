@@ -1,6 +1,10 @@
-########## base-debian ##########
+########## debian ##########
 
 FROM debian:jessie
+
+ENV LANG C.UTF-8
+ENV LANGUAGE C.UTF-8
+ENV LC_ALL C.UTF-8
 
 USER root
 
