@@ -8,6 +8,7 @@ storage:
   build: ../storage
 mediasampler:
   build: .
+  restart: always
   links:
     - vault
     - storage
@@ -16,6 +17,7 @@ mediasampler:
     - storage
 nginx:
   build: ../mediasampler-nginx
+  restart: always
   links:
     - storage
     - loggly
@@ -25,6 +27,7 @@ nginx:
     - "7979:80"
 loggly:
   image: sendgridlabs/loggly-docker
+  restart: always
   env_file: ../loggly/env
   expose:
     - "514/udp"
