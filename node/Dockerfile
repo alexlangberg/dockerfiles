@@ -42,5 +42,3 @@ RUN npm install -g \
 	gulp \
 	bunyan \
 	pm2
-
-RUN pm2 install pm2-server-monit
