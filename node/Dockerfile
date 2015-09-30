@@ -40,5 +40,7 @@ ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 # install global node modules
 RUN npm install -g \
 	gulp \
-	pm2 \
-	bunyan
+	bunyan \
+	pm2
+
+RUN pm2 install pm2-server-monit
