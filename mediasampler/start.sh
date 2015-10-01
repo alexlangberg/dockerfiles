@@ -4,11 +4,20 @@ echo "Running startup.sh"
 
 source secrets.sh
 
+STORAGE_PATH="/home/storage/mediasampler/chronostore"
+STORAGE_PATH_APP="/home/node/node-mediasampler/chronostore"
+
 git clone https://github.com/alexlangberg/node-mediasampler.git
 
-mkdir -p /home/storage/mediasampler/chronostore
+if [ ! -d $STORAGE_PATH ]; then
+  echo "Storage folder doesn't exist, creating ${STORAGE_PATH}."
+  mkdir -p $STORAGE_PATH
+fi
 
-ln -s /home/storage/mediasampler/chronostore /home/node/node-mediasampler/chronostore
+if [ ! -d $STORAGE_PATH_APP ]; then
+  echo "App folder symlink doesn't exist, linking ${STORAGE_PATH} to ${STORAGE_PATH_APP}."
+  ln -s $STORAGE_PATH $STORAGE_PATH_APP
+fi
 
 cd node-mediasampler
 
