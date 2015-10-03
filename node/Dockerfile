@@ -11,7 +11,7 @@ USER root
 RUN useradd -r -m \
 	-s /bin/bash \
 	-g nodegroup \
-	-G vaultgroup,storagegroup \
+	-G storagegroup \
 	$USER
 
 # switch to user and go to home as workdir

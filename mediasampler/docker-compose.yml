@@ -1,19 +1,16 @@
-base:
+debian:
   build: ../debian-jessie
 node:
   build: ../node
-vault:
-  build: ../vault
 storage:
   build: ../storage
 mediasampler:
   build: .
+  env_file: env
   restart: always
   links:
-    - vault
     - storage
   volumes_from:
-    - vault
     - storage
 nginx:
   build: ../mediasampler-nginx
@@ -28,6 +25,6 @@ nginx:
 loggly:
   image: sendgridlabs/loggly-docker
   restart: always
-  env_file: ../loggly/env
+  env_file: ../loggly-syslog/env
   expose:
     - "514/udp"

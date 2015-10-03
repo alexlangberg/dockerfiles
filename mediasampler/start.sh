@@ -2,11 +2,6 @@
 
 echo "Running startup.sh"
 
-source secrets.sh
-
-STORAGE_PATH="/home/storage/mediasampler/chronostore"
-STORAGE_PATH_APP="/home/node/node-mediasampler/chronostore"
-
 git clone https://github.com/alexlangberg/node-mediasampler.git
 
 if [ ! -d $STORAGE_PATH ]; then

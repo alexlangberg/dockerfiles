@@ -9,8 +9,7 @@ ENV LC_ALL C.UTF-8
 USER root
 
 # add groups
-RUN groupadd -r vaultgroup \
-	&& groupadd -r storagegroup \
+RUN groupadd -r storagegroup \
 	&& groupadd -r nodegroup
 
 # install utilities

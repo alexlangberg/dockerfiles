@@ -9,7 +9,6 @@ USER $USER
 
 WORKDIR $HOME
 
-COPY secrets.sh secrets.sh
 COPY start.sh start.sh
 
 CMD ["/bin/bash", "start.sh"]
