@@ -25,4 +25,4 @@ else
   echo "PM2_SECRET_ID not set. Not linked to keymetrics."
 fi
 
-pm2 start index.js --no-daemon -n sitesampler
+pm2 start index.js --no-daemon -n mediasampler

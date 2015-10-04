@@ -17,14 +17,20 @@ nginx:
   restart: always
   links:
     - storage
-    - loggly
   volumes_from:
     - storage
   ports:
     - "7979:80"
-loggly:
+sysloggly:
   image: sendgridlabs/loggly-docker
   restart: always
-  env_file: ../loggly-syslog/env
+  env_file: ../syslog-loggly/env
   expose:
     - "514/udp"
+logspout:
+  image: gliderlabs/logspout
+  command: syslog://sysloggly:514
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  links:
+    - sysloggly
