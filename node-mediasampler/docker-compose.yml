@@ -6,6 +6,9 @@ storage:
   build: ../storage
 mediasampler:
   build: .
+  hostname: $HOSTNAME
+  environment:
+      - HOSTNAME
   env_file: env
   restart: always
   links:
@@ -13,7 +16,7 @@ mediasampler:
   volumes_from:
     - storage
 nginx:
-  build: ../mediasampler-nginx
+  build: ../nginx-mediasampler
   restart: always
   links:
     - storage
