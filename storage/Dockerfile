@@ -1,6 +1,6 @@
 ########## storage ##########
 
-FROM alexlangberg/debian:jessie
+FROM alexlangberg/debian:jessie_2017_01_18
 
 USER root
 

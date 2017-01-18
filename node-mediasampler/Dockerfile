@@ -1,6 +1,6 @@
 ########## mediasampler ##########
 
-FROM alexlangberg/node:4.1.1
+FROM alexlangberg/node:7.4.0
 
 ENV USER node
 

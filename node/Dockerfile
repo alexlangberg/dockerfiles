@@ -1,10 +1,10 @@
 ########## node ##########
 
-FROM alexlangberg/debian:jessie
+FROM alexlangberg/debian:jessie_2017_01_18
 
 ENV USER node
-ENV NODE_VERSION v4.1.1
-ENV NVM_VERSION v0.26.1
+ENV NODE_VERSION v7.4.0
+ENV NVM_VERSION v0.33.0
 
 USER root
 
