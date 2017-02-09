@@ -6,14 +6,6 @@ ENV USER node
 ENV NODE_VERSION v7.4.0
 ENV NVM_VERSION v0.33.0
 
-USER root
-
-RUN useradd -r -m \
-	-s /bin/bash \
-	-g nodegroup \
-	-G storagegroup \
-	$USER
-
 # switch to user and go to home as workdir
 USER $USER
 
@@ -40,5 +32,4 @@ ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 # install global node modules
 RUN npm install -g \
 	gulp \
-	bunyan \
 	pm2
