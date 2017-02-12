@@ -2,4 +2,4 @@ Use this on another machine to connect to the nginx webserver and download all f
 
 Run crontab -e and add the following line, to run at minute 5 of every hour:
 
-5 * * * * wget -m -N -R "*.html" -P /home/alj/Cloud/Backup/mediasampler http://localhost:8080
+5 * * * * wget -m -N -R "*.html" -P /home/alj/Cloud/Backup/mediasampler http://localhost:7979

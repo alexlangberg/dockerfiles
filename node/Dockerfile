@@ -1,12 +1,11 @@
 ########## node ##########
 
-FROM alexlangberg/debian:jessie_2017_01_18
+FROM alexlangberg/debian:jessie_2017_02_12
 
 ENV USER node
 ENV NODE_VERSION v7.4.0
 ENV NVM_VERSION v0.33.0
 
-# switch to user and go to home as workdir
 USER $USER
 
 ENV HOME /home/$USER

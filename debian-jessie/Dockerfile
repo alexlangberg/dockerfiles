@@ -6,6 +6,13 @@ ENV LANG C.UTF-8
 ENV LANGUAGE C.UTF-8
 ENV LC_ALL C.UTF-8
 
+RUN groupadd -r nodegroup
+
+RUN useradd -r -m \
+	-s /bin/bash \
+	-g nodegroup \
+	node
+
 # install utilities
 RUN apt-get -y update && apt-get install -y \
 	curl \

@@ -4,14 +4,13 @@ node:
   build: ../node
 mediasampler:
   build: .
-  env_file: env
   restart: always
   volumes:
-    - "./hostmount/:/home/node/node-mediasampler/mediasampler"
+    - "./data/:/home/node/node-mediasampler/mediasampler"
 nginx:
   build: ../nginx-mediasampler
   restart: always
   ports:
     - "7979:80"
   volumes:
-    - "./hostmount/:/home/node/node-mediasampler/mediasampler"
+    - "./data/:/home/node/node-mediasampler/mediasampler"
