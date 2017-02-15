@@ -16,7 +16,7 @@ WORKDIR $APP_HOME/node-mediasampler
 RUN npm install
 
 RUN mkdir $VOLUME_DIR
-VOLUME $VOLUME_DIR
+#VOLUME $VOLUME_DIR
 
 USER root
 
