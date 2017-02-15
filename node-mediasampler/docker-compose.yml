@@ -6,11 +6,11 @@ mediasampler:
   build: .
   restart: always
   volumes:
-    - "./data/:/home/node/node-mediasampler/mediasampler"
+    - "./data/:/home/appuser/node-mediasampler/mediasampler"
 nginx:
   build: ../nginx-mediasampler
   restart: always
   ports:
     - "7979:80"
   volumes:
-    - "./data/:/home/node/node-mediasampler/mediasampler"
+    - "./data/:/home/appuser/node-mediasampler/mediasampler"

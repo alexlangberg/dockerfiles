@@ -1,6 +1,6 @@
 #!/bin/bash
-
-docker-compose down \
+mkdir -p data \
+&& docker-compose down \
 && docker rmi nodemediasampler_mediasampler \
 && docker rmi nodemediasampler_nginx \
 && docker rmi nodemediasampler_node \

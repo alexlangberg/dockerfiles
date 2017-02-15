@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker-compose up -d
+mkdir -p data \
+&& docker-compose up -d
