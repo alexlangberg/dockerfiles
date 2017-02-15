@@ -1,6 +1,6 @@
 ########## mediasampler-nginx ##########
 
-FROM nginx:1.9.5
+FROM nginx:1.11.9
 
 RUN rm -v /etc/nginx/nginx.conf
 
