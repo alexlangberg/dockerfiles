@@ -1,12 +1,8 @@
 ########## mediasampler ##########
 
-FROM alexlangberg/node:7.4.0_2017_02_12
+FROM alexlangberg/node:7.4.0_2017_02_14
 
-ENV USER node
 ENV SITESAMPLER_LOG 1
-
-# switch to user and go to home as workdir
-USER $USER
 
 WORKDIR $HOME
 

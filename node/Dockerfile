@@ -1,14 +1,9 @@
 ########## node ##########
 
-FROM alexlangberg/debian:jessie_2017_02_12
+FROM alexlangberg/debian:jessie_2017_02_14
 
-ENV USER node
 ENV NODE_VERSION v7.4.0
 ENV NVM_VERSION v0.33.0
-
-USER $USER
-
-ENV HOME /home/$USER
 
 WORKDIR $HOME
 

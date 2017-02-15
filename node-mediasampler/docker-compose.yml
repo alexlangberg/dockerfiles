@@ -1,16 +1,22 @@
-debian:
-  build: ../debian-jessie
-node:
-  build: ../node
-mediasampler:
-  build: .
-  restart: always
-  volumes:
-    - "./data/:/home/node/node-mediasampler/mediasampler"
-nginx:
-  build: ../nginx-mediasampler
-  restart: always
-  ports:
-    - "7979:80"
-  volumes:
-    - "./data/:/home/node/node-mediasampler/mediasampler"
+version: "3.0"
+services:
+  debian:
+    build: ../debian-jessie
+    environment:
+      - UID
+      - GROUPS
+      - PWD
+  node:
+    build: ../node
+  mediasampler:
+    build: .
+    restart: always
+    volumes:
+      - "./data/:/home/node/node-mediasampler/mediasampler"
+  nginx:
+    build: ../nginx-mediasampler
+    restart: always
+    ports:
+      - "7979:80"
+    volumes:
+      - "./data/:/home/node/node-mediasampler/mediasampler"
