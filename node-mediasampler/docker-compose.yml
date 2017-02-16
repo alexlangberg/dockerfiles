@@ -7,6 +7,7 @@ services:
   mediasampler:
     build: .
     restart: always
+    hostname: mediasampler
     volumes:
       - "data-volume:/home/appuser/node-mediasampler/mediasampler"
       - "./data/:/home/appuser/node-mediasampler/mediasampler"
