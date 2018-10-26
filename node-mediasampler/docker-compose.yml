@@ -1,25 +1,23 @@
-debian:
-  build: ../debian-jessie
-node:
-  build: ../node
-storage:
-  build: ../storage
-mediasampler:
-  build: .
-  environment:
-      - HOSTNAME
-  env_file: env
-  restart: always
-  links:
-    - storage
-  volumes_from:
-    - storage
-nginx:
-  build: ../nginx-mediasampler
-  restart: always
-  links:
-    - storage
-  volumes_from:
-    - storage
-  ports:
-    - "7979:80"
+version: "3.0"
+services:
+  debian:
+    build: ../debian-jessie
+  node:
+    build: ../node
+  mediasampler:
+    build: .
+    restart: always
+    hostname: mediasampler
+    volumes:
+      - "data-volume:/home/appuser/node-mediasampler/mediasampler"
+      - "./data/:/home/appuser/node-mediasampler/mediasampler"
+  nginx:
+    build: ../nginx-mediasampler
+    restart: always
+    ports:
+      - "7979:80"
+    volumes:
+      - "data-volume:/home/appuser/node-mediasampler/mediasampler"
+      - "./data/:/home/appuser/node-mediasampler/mediasampler"
+volumes:
+  data-volume:
