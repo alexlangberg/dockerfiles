@@ -1,0 +1,14 @@
+version: "3.0"
+services:
+  main:
+    build: .
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+  alexlangberg:
+    build: ../alexlangberg
+    restart: always
+  feed2json:
+    image: "alexlangberg/feed2json-server"
+    restart: always
