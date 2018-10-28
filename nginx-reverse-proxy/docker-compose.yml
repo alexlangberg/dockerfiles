@@ -7,8 +7,11 @@ services:
       - "80:80"
       - "443:443"
   alexlangberg:
-    build: ../alexlangberg
+    image: "alexlangberg/website"
     restart: always
   feed2json:
     image: "alexlangberg/feed2json-server"
+    restart: always
+  feedmixer:
+    build: ../feedmixer
     restart: always
