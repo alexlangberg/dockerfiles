@@ -5,28 +5,39 @@ services:
     command: --api --docker
     ports:
       - "80:80"
-      - "8080:8080"
-      - "19999:19999"
+      - "443:443"
+    expose:
+      - 8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./${TRAEFIK_CONFIG_FILE}:/traefik.toml
+      - ./acme.json:/acme.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=Host:${HOST_TRAEFIK}"
+      - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
   website:
     image: "alexlangberg/website"
     restart: always
     labels:
       - "traefik.enable=true"
+      - "traefik.port=80"
       - "traefik.frontend.rule=Host:${HOST_ALEXLANGBERG}"
   feed2json:
     image: "alexlangberg/feed2json-server"
     restart: always
     labels:
       - "traefik.enable=true"
+      - "traefik.port=4201"
       - "traefik.frontend.rule=Host:${HOST_FEED2JSON}"
   feedmixer:
     build: ../feedmixer
     restart: always
     labels:
       - "traefik.enable=true"
+      - "traefik.port=80"
       - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
   netdata:
     image: netdata/netdata
@@ -42,5 +53,6 @@ services:
       - PGID=${DOCKER_GROUP_ID}
     labels:
       - "traefik.enable=true"
+      - "traefik.port=19999"
       - "traefik.frontend.rule=Host:${HOST_NETDATA}"
       - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
