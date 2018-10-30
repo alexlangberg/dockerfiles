@@ -2,6 +2,7 @@ version: "3"
 services:
   reverse-proxy:
     image: traefik
+    restart: always
     command: --api --docker
     ports:
       - "80:80"
@@ -43,6 +44,7 @@ services:
       - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
   netdata:
     image: netdata/netdata
+    restart: always
     cap_add:
       - SYS_PTRACE
     security_opt:
