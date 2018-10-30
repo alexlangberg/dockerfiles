@@ -24,7 +24,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=80"
-      - "traefik.frontend.rule=Host:${HOST_ALEXLANGBERG}"
+      - "traefik.frontend.rule=Host:${HOST_WEBSITE}"
+      - "traefik.frontend.redirect.regex=^https?://www.${HOST_REDIRECT_REGEX}/(.*)"
+      - "traefik.frontend.redirect.replacement=${HOST_REDIRECT_REPLACE}/$${1}"
   feed2json:
     image: "alexlangberg/feed2json-server"
     restart: always
