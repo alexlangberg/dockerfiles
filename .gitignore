@@ -2,4 +2,4 @@
 data
 feedmixer
 traefik-reverse-proxy/.env
-acme.json
+traefik-reverse-proxy/acme.json
