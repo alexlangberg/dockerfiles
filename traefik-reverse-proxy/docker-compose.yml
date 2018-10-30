@@ -2,6 +2,7 @@ version: "3"
 services:
   reverse-proxy:
     image: traefik
+    hostname: traefik
     restart: always
     command: --api --docker
     ports:
@@ -21,6 +22,7 @@ services:
       - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
   website:
     image: "alexlangberg/website"
+    hostname: website
     restart: always
     labels:
       - "traefik.enable=true"
@@ -30,6 +32,7 @@ services:
       - "traefik.frontend.redirect.replacement=${HOST_REDIRECT_REPLACE}/$${1}"
   feed2json:
     image: "alexlangberg/feed2json-server"
+    hostname: feed2json
     restart: always
     labels:
       - "traefik.enable=true"
@@ -37,6 +40,7 @@ services:
       - "traefik.frontend.rule=Host:${HOST_FEED2JSON}"
   feedmixer:
     build: ../feedmixer
+    hostname: feedmixer
     restart: always
     labels:
       - "traefik.enable=true"
@@ -44,6 +48,7 @@ services:
       - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
   netdata:
     image: netdata/netdata
+    hostname: netdata
     restart: always
     cap_add:
       - SYS_PTRACE
