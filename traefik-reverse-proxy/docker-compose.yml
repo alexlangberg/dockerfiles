@@ -1,10 +1,22 @@
 version: "3"
+
+volumes:
+  portainer_data:
+
 services:
   reverse-proxy:
     image: traefik
     hostname: traefik
     restart: always
-    command: --api --docker
+    command:
+      - "--api"
+      - "--retry"
+      - "--docker"
+      - "--docker.watch"
+      - "--docker.endpoint=unix:///var/run/docker.sock"
+      - "--docker.exposedbydefault=false"
+      - "--docker.domain=${HOST_DOMAIN}"
+#      - "--docker.swarmMode"
     ports:
       - "80:80"
       - "443:443"
@@ -20,6 +32,24 @@ services:
       - "traefik.port=8080"
       - "traefik.frontend.rule=Host:${HOST_TRAEFIK}"
       - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
+
+#  portainer:
+#    image: portainer/portainer:latest
+#    hostname: portainer
+#    command: -H unix:///var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - portainer_data:/data
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.port=9000"
+#      - "traefik.frontend.rule=Host:${HOST_PORTAINER}"
+##      - "traefik.frontend.auth.basic=${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
+#    deploy:
+#      mode: global
+#      placement:
+#        constraints: [node.role == manager]
+
   website:
     image: "alexlangberg/website"
     hostname: website
@@ -28,8 +58,9 @@ services:
       - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:${HOST_WEBSITE}"
-      - "traefik.frontend.redirect.regex=^https?://www.${HOST_REDIRECT_REGEX}/(.*)"
+      - "traefik.frontend.redirect.regex=^https?://www.${HOST_DOMAIN}/(.*)"
       - "traefik.frontend.redirect.replacement=${HOST_REDIRECT_REPLACE}/$${1}"
+
   feed2json:
     image: "alexlangberg/feed2json-server"
     hostname: feed2json
@@ -38,6 +69,7 @@ services:
       - "traefik.enable=true"
       - "traefik.port=4201"
       - "traefik.frontend.rule=Host:${HOST_FEED2JSON}"
+
   feedmixer:
     build: ../feedmixer
     hostname: feedmixer
@@ -46,6 +78,7 @@ services:
       - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
+
   netdata:
     image: netdata/netdata
     hostname: netdata
