@@ -4,7 +4,7 @@ volumes:
   portainer_data:
 
 services:
-  reverse-proxy:
+  traefik:
     image: traefik
     hostname: traefik
     restart: always
