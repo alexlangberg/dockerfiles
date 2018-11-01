@@ -3,3 +3,4 @@ data
 feedmixer
 traefik-reverse-proxy/.env
 traefik-reverse-proxy/acme.json
+traefik-swarm/config.prod.sh
