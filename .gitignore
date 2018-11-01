@@ -1,4 +1,5 @@
 .idea
 data
 feedmixer
+traefik-reverse-proxy/.env
 traefik-swarm/config.prod.sh
