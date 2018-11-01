@@ -70,14 +70,14 @@ services:
       - "traefik.port=4201"
       - "traefik.frontend.rule=Host:${HOST_FEED2JSON}"
 
-  feedmixer:
-    build: ../feedmixer
-    hostname: feedmixer
-    restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.port=80"
-      - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
+#  feedmixer:
+#    build: ../feedmixer
+#    hostname: feedmixer
+#    restart: always
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.port=80"
+#      - "traefik.frontend.rule=Host:${HOST_FEEDMIXER}"
 
   netdata:
     image: netdata/netdata
