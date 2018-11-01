@@ -115,3 +115,20 @@ services:
         traefik.enable: "true"
         traefik.port: "4201"
         traefik.frontend.rule: "Host:${HOST_FEED2JSON}"
+
+  feedmixer:
+    image: "alexlangberg/feedmixer:dev"
+    hostname: "${SERVICE_HOSTNAME_TEMPLATE}"
+    networks:
+      - traefik-net
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        window: 15s
+      labels:
+        traefik.enable: "true"
+        traefik.port: "80"
+        traefik.frontend.rule: "Host:${HOST_FEEDMIXER}"
