@@ -16,7 +16,6 @@ services:
       - "--docker.endpoint=unix:///var/run/docker.sock"
       - "--docker.exposedbydefault=false"
       - "--docker.domain=${HOST_DOMAIN}"
-#      - "--docker.swarmMode"
     ports:
       - "80:80"
       - "443:443"
