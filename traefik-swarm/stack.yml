@@ -66,6 +66,7 @@ services:
       - traefik-net
     deploy:
       mode: replicated
+      # Make sure it only runs once and only on the manager.
       replicas: 1
       placement:
         constraints:
@@ -79,6 +80,33 @@ services:
         traefik.port: "19999"
         traefik.frontend.rule: "Host:${HOST_NETDATA}"
         traefik.frontend.auth.basic: "${TRAEFIK_BASIC_AUTH_CREDENTIALS}"
+
+  portainer:
+    image: "portainer/portainer"
+    command:
+      - "--host=unix:///var/run/docker.sock"
+      - "--admin-password=${PORTAINER_ADMIN_PASSWORD}"
+    hostname: "${SERVICE_HOSTNAME_TEMPLATE}"
+    networks:
+      - traefik-net
+    deploy:
+      mode: replicated
+      # Make sure it only runs once and only on the manager.
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: any
+        delay: 5s
+        window: 15s
+      labels:
+        traefik.enable: "true"
+        traefik.port: "9000"
+        traefik.frontend.rule: "Host:${HOST_PORTAINER}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/portainer/data:/data
 
   website:
     image: "alexlangberg/website"

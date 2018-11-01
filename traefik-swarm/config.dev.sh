@@ -22,4 +22,9 @@ export DOCKER_GROUP_ID=$(grep docker /etc/group | cut -d ':' -f 3)
 # Dev username: test, password: test
 export TRAEFIK_BASIC_AUTH_CREDENTIALS='test:$apr1$B0Lq6ogg$TcyZN.GPkxR82qOzmSg3w1'
 
+# Change this before deployment!
+# Generate with htpasswd -nb -B admin test | cut -d ":" -f 2
+# Dev username: admin, password: test
+export PORTAINER_ADMIN_PASSWORD='$2y$05$C7mAGbLKXbPQKiK2vUZNmOqgD1pni/cy1gLOuer1s4zNn/dXDQByy'
+
 export SERVICE_HOSTNAME_TEMPLATE='{{.Node.Hostname}}-{{.Service.Name}}-{{.Task.Slot}}-{{.Node.ID}}'
